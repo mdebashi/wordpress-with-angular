@@ -1,0 +1,7 @@
+body { background: #eeeeee; }
+
+body .warning, body .success { padding: 5px; display: inline-block; }
+
+body .warning { background-color: yellow; }
+
+body .success { background-color: lightgreen; }

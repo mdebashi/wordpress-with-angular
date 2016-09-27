@@ -1,0 +1,13 @@
+body{
+	background: #eeeeee;
+	.warning, .success{
+		padding: 5px;
+		display: inline-block;
+	}
+	.warning{
+		background-color: yellow;
+	}
+	.success{
+		background-color: lightgreen;
+	}
+}
