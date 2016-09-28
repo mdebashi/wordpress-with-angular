@@ -5,8 +5,19 @@ angular.module('app', ['ngRoute'])
 	.when('/',{
 		templateUrl: myLocalized.partials + 'main.html',
 		controller: 'MainController'
+	})
+	.when('/:ID', {
+		templateUrl: myLocalized.partials + 'content.html',
+		controller: 'Content'
 	});
 })
-.controller('MainController', function(){
-	console.log('Looks like main has loaded! Yaat');
+.controller('MainController', function($scope, $http, $routeParams){
+	$http.get('wp-json/posts/').success(function(res){
+		$scope.posts = res;
+	});
+})
+.controller('Content', function($scope, $http, $routeParams) {
+	$http.get('wp-json/posts/' + $routeParams.ID).success(function(res){
+		$scope.post = res;
+	});
 });

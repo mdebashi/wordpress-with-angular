@@ -1,2 +1,8 @@
 <div><p class="success">We are udiv and running with Angular on a worddivress site!</p></div>
 <div><p class="warning">Next the fun part, the wordpress API!</p></div>
+
+<ul>
+	<li ng-repeat="post in posts">
+		<a href="{{post.ID}}">{{post.ID}} - {{post.title}}</a>
+	</li>
+</ul>
