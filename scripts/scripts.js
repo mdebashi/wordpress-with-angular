@@ -9,13 +9,22 @@ angular.module('app', ['ngRoute', 'ngSanitize'])
 	.when('/:slug', {
 		templateUrl: myLocalized.templates + 'content.html',
 		controller: 'ContentController'
+	})
+	.when('/category/:category', {
+		templateUrl: myLocalized.templates + 'main.html',
+		controller: 'MainController'
+	})
+	.otherwise({
+		redirectTo: '/'
 	});
 }])
 .controller('MainController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 	$http.get('wp-json/posts/').success(function(res){
 		$scope.posts = res;
+		$scope.pageTitle = 'Latest Posts:';
 		document.querySelector('title').innerHTML = 'Home | Wordpress with Angular';
 	});
+	console.log('categories out', $scope.categories)
 }])
 .controller('ContentController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 	$http.get('wp-json/posts/?filter[name]' + $routeParams.slug).success(function(res){
@@ -42,4 +51,16 @@ angular.module('app', ['ngRoute', 'ngSanitize'])
 			};
 		}]
 	};
+})
+.directive('categoryList', function(){
+	return{
+		restrict: 'EA',
+		templateUrl: myLocalized.templates + 'category-list.html',
+		controller: ['$scope', '$http', function($scope, $http){
+			$http.get('wp-json/taxonomies/category/terms').success(function(res){
+				$scope.categories = res;
+				console.log('categories in', $scope.categories);
+			});
+		}]
+	}
 });
