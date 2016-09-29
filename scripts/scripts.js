@@ -14,6 +14,7 @@ angular.module('app', ['ngRoute', 'ngSanitize'])
 .controller('MainController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 	$http.get('wp-json/posts/').success(function(res){
 		$scope.posts = res;
+		document.querySelector('title').innerHTML = 'Home | Wordpress with Angular';
 	});
 }])
 .controller('ContentController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
@@ -21,6 +22,7 @@ angular.module('app', ['ngRoute', 'ngSanitize'])
 		for (var i = res.length - 1; i >= 0; i--) {
 			if(res[i]["slug"] == $routeParams.slug){
 				$scope.post = res[i];
+				document.querySelector('title').innerHTML = res[i].title + ' | AngularJS Demo Theme';
 			}
 		}
 	});
