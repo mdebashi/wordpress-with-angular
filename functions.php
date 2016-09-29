@@ -24,7 +24,7 @@ function my_scripts() {
 		'my-scripts',
 		'myLocalized',
 		array(
-			'partials' => trailingslashit( get_template_directory_uri() ) . 'partials/'
+			'templates' => trailingslashit( get_template_directory_uri() ) . 'templates/'
 			)
 	);
 }

@@ -15,10 +15,18 @@
 	</header>
 
 	<div>
-		<input type="text" ng-model="name">
+		<input type="text" ng-model="name" ng-focused="">
 
 		<p>Hello, {{name}}!</p>
 	</div>
+	<search-form></search-form>
+	<ul>
+		<li ng-repeat="post in posts">
+			<a href="{{post.ID}}" ng-bind-html="post.title"></a>
+			<div ng-bind-html="post.excerpt"></div>
+		</li>
+	</ul>
+
 	<div ng-view></div>
 
 	<footer>
